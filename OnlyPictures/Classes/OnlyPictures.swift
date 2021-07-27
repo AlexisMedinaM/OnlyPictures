@@ -326,6 +326,8 @@ public class OnlyPictures: UIView {
         }
     }
     
+    public var radius: Float?
+    
     public var defaultPicture: UIImage? = nil {
         didSet {
             self.setDefaultPicturesInAllImageViews()
@@ -695,10 +697,11 @@ internal extension OnlyPictures {
         self.increaseWidthOfAllImageViews(self.spacing)
     }
     func increaseWidthOfAllImageViews(_ width: Float) {
+        let radius = CGFloat(self.radius ?? Float(SIZE_OF_IMAGEVIEWS/2))
         for imageView in listPictureImageViews {
-            imageView.makeBorderWithCornerRadius(radius: SIZE_OF_IMAGEVIEWS/2, borderColor: self.spacingColor, borderWidth: CGFloat(width))
+            imageView.makeBorderWithCornerRadius(radius: radius, borderColor: self.spacingColor, borderWidth: CGFloat(width))
         }
-        self.buttonCount?.makeCountBorderWithCornerRadius(radius: SIZE_OF_IMAGEVIEWS/2, countWidth: self.calculatedWidthOfCount, borderColor: self.spacingColor, borderWidth: CGFloat(width))   // If button will be there, if will apply border width to it.
+        self.buttonCount?.makeCountBorderWithCornerRadius(radius: radius, countWidth: self.calculatedWidthOfCount, borderColor: self.spacingColor, borderWidth: CGFloat(width))   // If button will be there, if will apply border width to it.
     }
 }
 
